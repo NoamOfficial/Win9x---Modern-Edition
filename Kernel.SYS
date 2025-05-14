@@ -1,0 +1,29 @@
+[Boot]
+Bootloader = Bootldr.sys
+Logo = C:\Win9x\Logo.png
+Device = ntconfig.sys
+[Files]
+File = winsetup.dll
+File = api64.sys
+File = Shellinfo.dll
+File = RegConfigure.dll
+File = Shell.SYS
+File = ShellAPI.dll
+File = bootinfo.ini
+File = Shell32.dll
+File = Shell16.dll
+[Hardware]
+HDD = C:\Drivers\hdd.sys
+SSD = C:\Drivers\ssd.sys
+GPU = C:\Drivers\gpu.sys
+CPU = C:\Drivers\cpu.sys
+[Task Management]
+MaxProcesses = 67894
+[APIs]
+GetProcessExecution = HANDLER As Data, Output As %ExecutionName%
+SetProcessHookEx = HANDLER As String = ($ProcessName, $HookName)
+[Memory]
+MaxIntegerSize = 8299299452929
+MinIntegerSize = 1
+MaxMemory = 128000000
+MinMemory = 256000
