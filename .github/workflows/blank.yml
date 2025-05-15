@@ -1,0 +1,32 @@
+name: Build Win9x Modern Edition
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v3
+
+    - name: 🛠 Install NASM
+      run: sudo apt-get install nasm
+
+    - name: Assemble kernel.asm
+      run: |
+        mkdir -p build
+        nasm Kernel.asm
+
+    - name: Assemble cdrom.asm
+      run: |
+        nasm drivers/cdrom.asm -f bin -o build/cdrom.sys
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: win9x-modern-build
+        path: build/
+
