@@ -18,7 +18,7 @@ jobs:
     - name: Assemble kernel.asm
       run: |
         mkdir -p build
-        nasm Kernel.asm
+        nasm Main/Kernel.asm -f bin -o kernel.sys
 
     - name: Assemble cdrom.asm
       run: |
