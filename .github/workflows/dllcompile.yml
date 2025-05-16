@@ -20,29 +20,29 @@ jobs:
       - name: Build AMS.dll
         run: |
           mkdir -p build
-          x86_64-w64-mingw32-gcc -shared -o build/AMS.dll windows/AMS.c.c -Wl,--out-implib,build/libyourlib.a
+          x86_64-w64-mingw32-gcc -shared -o windows/AMS.dll windows/AMS.c.c -Wl,--out-implib,build/libyourlib.a
 
       - name: Build Shell32.dll
         run: |
           mkdir -p build
-          x86_64-w64-mingw32-gcc -shared -o build/shell32.dll windows/shell32.c.c -Wl,--out-implib,build/libyourlib.a
+          x86_64-w64-mingw32-gcc -shared -o windows/shell32.dll windows/shell32.c.c -Wl,--out-implib,build/libyourlib.a
       
       - name: Build User32.dll
         run: |
           mkdir -p build
-          x86_64-w64-mingw32-gcc -shared -o build/user32.dll windows/user32.c.c -Wl,--out-implib,build/libyourlib.a
+          x86_64-w64-mingw32-gcc -shared -o windows/user32.dll windows/user32.c.c -Wl,--out-implib,build/libyourlib.a
 
           
       - name: Build Boot32.dll
         run: |
           mkdir -p build
-          x86_64-w64-mingw32-gcc -shared -o build/Boot.dll windows/libname.c.c -Wl,--out-implib,build/libyourlib.a
+          x86_64-w64-mingw32-gcc -shared -o windows/Boot.dll windows/libname.c.c -Wl,--out-implib,build/libyourlib.a
           
           
       - name: Build KERNEL32.DLL
         run: |
           mkdir -p build
-          x86_64-w64-mingw32-gcc -shared -o build/kernel32.dll windows/kernel32.c.c -Wl,--out-implib,build/libyourlib.a
+          x86_64-w64-mingw32-gcc -shared -o windows/kernel32.dll windows/kernel32.c.c -Wl,--out-implib,build/libyourlib.a
           
       - name: Upload DLL Artifact
         uses: actions/upload-artifact@v3
