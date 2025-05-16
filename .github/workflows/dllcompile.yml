@@ -1,0 +1,53 @@
+name: Build C DLLs (No Visual Studio)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-dll:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install mingw-w64
+        run: sudo apt-get update && sudo apt-get install -y mingw-w64
+
+      - name: Build AMS.dll
+        run: |
+          mkdir -p build
+          x86_64-w64-mingw32-gcc -shared -o build/AMS.dll windows/AMS.c.c -Wl,--out-implib,build/libyourlib.a
+
+      - name: Build Shell32.dll
+        run: |
+          mkdir -p build
+          x86_64-w64-mingw32-gcc -shared -o build/shell32.dll windows/shell32.c.c -Wl,--out-implib,build/libyourlib.a
+      
+      - name: Build User32.dll
+        run: |
+          mkdir -p build
+          x86_64-w64-mingw32-gcc -shared -o build/user32.dll windows/user32.c.c -Wl,--out-implib,build/libyourlib.a
+
+          
+      - name: Build Boot32.dll
+        run: |
+          mkdir -p build
+          x86_64-w64-mingw32-gcc -shared -o build/Boot.dll windows/libname.c.c -Wl,--out-implib,build/libyourlib.a
+          
+          
+      - name: Build KERNEL32.DLL
+        run: |
+          mkdir -p build
+          x86_64-w64-mingw32-gcc -shared -o build/kernel32.dll windows/kernel32.c.c -Wl,--out-implib,build/libyourlib.a
+          
+      - name: Upload DLL Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dll-output
+          path: build/*.dll
+          
+
