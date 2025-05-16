@@ -26,6 +26,6 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: win9x-modern-build
+        name: win9x---modern-edition
         path: build/
 
